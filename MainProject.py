@@ -97,6 +97,9 @@ def from_simple_to_period(numerator, denominator):
 
 def translation(argument, i, j):
     argument = str(argument)
+    integer_part = '0'
+    numerator = '0'
+    denominator = '0'
     if '(' in argument or '.' in argument:
         temp = from_period_to_simple(argument, i)
         integer_part = temp[0]
@@ -119,6 +122,8 @@ def translation(argument, i, j):
 
 class MyWidget(QMainWindow):
     def __init__(self):
+        super().__init__()
+        uic.loadUi('MainProject.ui', self)
         self.i = 2
         self.i_1 = 2
         self.i_2 = 2
@@ -128,8 +133,6 @@ class MyWidget(QMainWindow):
         self.j_2 = 2
         self.arithmetic_sign = '+'
         self.arithmetic_sign_1 = '!'
-        super().__init__()
-        uic.loadUi('MainProject.ui', self)
         self.pushButton.clicked.connect(self.active_1)
         self.pushButton_2.clicked.connect(self.active_2)
         self.pushButton_3.clicked.connect(self.active_3)
