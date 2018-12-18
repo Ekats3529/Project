@@ -46,13 +46,13 @@ def fract_part_to_decimal(argument, i):
 def int_digits_to_decimal(argument, i):
     temp = 0
     k = 0
-    argument_1 = str(abs(int(argument)))
+    argument_1 = str(argument)
     integer_part = argument_1[::-1]
     for symbol in integer_part:
         temp += VALUES.index(symbol) * (i ** k)
         k += 1
-    if int(argument) < 0:
-        return str(-temp)
+    if '-' in argument_1:
+        return str('-{}'.format(temp))
     return str(temp)
 
 
@@ -308,13 +308,20 @@ class MyWidget(QMainWindow):
                 if self.arithmetic_sign == '/' and number_2 == '0':
                     self.label_14.setText('Деление на ноль невозможно')
                 else:
+                    print(3)
                     temp = evaluate_button(arg, arg_2, self.arithmetic_sign)
+                    print(4)
                     temp1 = from_simple_to_period(temp.numerator, temp.denominator)
+                    print(5)
                     if ((self.ch_2 and not self.fr_2) or (not self.ch_2 and not self.fr_2)) and int(self.j_1) == 10:
+                        print(6)
                         self.label_14.setText(translation(temp1, 10, self.j_1, True))
+
                     elif not self.ch_2 and self.fr_2:
+                        print(7)
                         self.label_14.setText(translation(temp1, 10, self.j_1))
                     elif (not self.ch_2 and not self.fr_2) or int(self.j_1) != 10:
+                        print(8)
                         self.label_14.setText('ERROR')
             else:
                 self.label_14.setText('ERROR')
@@ -415,3 +422,4 @@ app = QApplication(sys.argv)
 ex = MyWidget()
 ex.show()
 sys.exit(app.exec_())
+
